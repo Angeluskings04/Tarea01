@@ -3,8 +3,8 @@ import java.time.LocalTime;
 /**
  * Tarea 01
  * Clase Cajon.
- * 
- * @author Miranda Ruiz.
+ *
+ * @author Medina Ruiz.
  * @author Castro Reyes Angel.
  * @version 1.0
  */
