@@ -17,6 +17,7 @@ public class Cajon {
     int horaEntrada; // Hora en la que entro.
     int horaSalida; // Hora en la que se esta saliendo
     LocalTime ltim;
+    int precio;
 
     // Constructor por omision.
     public Cajon() {
@@ -41,4 +42,10 @@ public class Cajon {
     public void registrarSalida() {
         horaSalida = ltim.getHour();
     }
+
+  
+
+
+
+
 }

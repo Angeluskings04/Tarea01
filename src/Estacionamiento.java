@@ -10,7 +10,9 @@ public class Estacionamiento{
       if (lugares[i] != null) {
         cont++;
       System.out.println(cont);
-      }
+    }else {
+      System.out.println("");
+    }
     }
   }
 
