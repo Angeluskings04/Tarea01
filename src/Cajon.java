@@ -23,6 +23,12 @@ public class Cajon {
         ocupado = false;
     }
 
+    public Cajon(boolean ocupado, int horaEntrada, int horaSalida){
+      this.ocupado = ocupado;
+      this.horaEntrada = horaEntrada;
+      this.horaSalida = horaSalida;
+    }
+
     // Metodo que cambia el valor de horaEntrada usando el metodo de
     // java.time.LocalTime.
     public void registrarEntrada() {

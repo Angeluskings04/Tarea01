@@ -15,6 +15,11 @@ public class Ticket{
     System.out.println("   ,");
     System.out.println(".-/c-.,::");
     System.out.println("(_)'==(_)");
+
+
+    Estacionamiento l1 = new Estacionamiento();
+    l1.lugaresDisponibles();
+    l1.guardarCarro();
   }
 
 }
