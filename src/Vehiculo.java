@@ -32,6 +32,13 @@ public class Vehiculo{
     vigencia = 0;
   }
 
+  public boolean getPension(){
+    return  pension;
+  }
+  public void setPension(boolean p){
+    pension=p;
+  }
+
   public void ilustracion(){
     if(this instanceof Coche){
       System.out.println("El vehiculo es: Coche " );
