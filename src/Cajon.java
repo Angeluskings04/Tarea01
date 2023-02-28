@@ -20,17 +20,19 @@ public class Cajon {
     LocalTime ltim;
     int precio;
     private boolean boleto; // ATRIBUTO que dice si tiene el boleto o no.
-    private Vehiculo vei;
+    private Vehiculo auto;
 
     // Constructor por omision.
     public Cajon() {
         ocupado = false;
+        auto = null;
     }
 
-    public Cajon(boolean ocupado, int horaEntrada, int horaSalida){
+    public Cajon(boolean ocupado, Vehiculo nuevo, int entrada,boolean t){
+      this.auto = nuevo;
+      this.boleto = t;
       this.ocupado = ocupado;
-      this.horaEntrada = horaEntrada;
-      this.horaSalida = horaSalida;
+      this.horaEntrada = entrada;
     }
 
     // Metodo que cambia el valor de horaEntrada usando el metodo de
@@ -40,6 +42,10 @@ public class Cajon {
 
     }
 
+    public Vehiculo getVehiculo(){
+      return auto;
+    }
+
     // Metodo que cambia el valor de horaSalida usando el metodo de
     // java.time.LocalTime.
     public void registrarSalida() {
@@ -47,7 +53,7 @@ public class Cajon {
     }
 
     public void asignar(Vehiculo c){
-        vei = c;
+        auto = c;
     }
 
     public void boletoAsignado(){
@@ -69,8 +75,4 @@ public class Cajon {
     public void setOcupado(boolean b){
         ocupado = b;
     }
-     public void librarEspacio(){
-        ocupado = false;
-        vei = null;
-     }
 }
