@@ -1,31 +1,13 @@
 
-
 public class Motocicleta extends Vehiculo{
 
-  public static enum TipoMotocicleta {
-    ELECTRICO, CLASICO;
+
+  public Motocicleta(String marca, String modelo, int año, Color color, String placas,  Tipo tipo){
+    super(marca, modelo, año, color, placas, tipo);
   }
 
-  TipoMotocicleta tipoMotocicleta;
-
-  public Motocicleta(String marca, String modelo, int año, Color color, String placas, String st){
-    super();
-    switch (st){
-      case "ELECTRICO":
-        tipoMotocicleta = TipoMotocicleta.ELECTRICO;
-        break;
-      case "CLASICO":
-        tipoMotocicleta = TipoMotocicleta.CLASICO;
-        break;
-      default:
-        tipoMotocicleta = TipoMotocicleta.CLASICO;
-        break;
-    }
+  public void impMoto(){
+    super.ilustracion();
+    System.out.println("Marca:" + marca + "\n" + "Modelo:" + modelo + "\n" + "Año:" + año + "\n" + "Placas:" + placas + "\n" + "Tipo de moto:" + tipo);
   }
-
-  public String impMoto(){
-
-    return "Marca:" + marca + "\n" + "Modelo:" + modelo + "\n" + "Año:" + año + "\n" + "Placas:" + placas;
-}
-
 }
