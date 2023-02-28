@@ -13,11 +13,14 @@ public class Cajon {
     /*
      * Atributos que posee el cajon de estacionamiento.
      */
-    boolean ocupado; // Si esta ocupado o no.
-    int horaEntrada; // Hora en la que entro.
+    private boolean ocupado; // Si esta ocupado o no.
+    private int horaEntrada; // Hora en la que entro.
+    int minutoEntrada;
     int horaSalida; // Hora en la que se esta saliendo
     LocalTime ltim;
     int precio;
+    private boolean boleto; // ATRIBUTO que dice si tiene el boleto o no.
+    private Vehiculo vei;
 
     // Constructor por omision.
     public Cajon() {
@@ -43,9 +46,31 @@ public class Cajon {
         horaSalida = ltim.getHour();
     }
 
-  
+    public void asignar(Vehiculo c){
+        vei = c;
+    }
 
+    public void boletoAsignado(){
+        boleto = true;
+    }
 
+    public boolean getBoleto(){
+        return boleto;
+    }
 
+    public int getHoraEntrada(){
+        return horaEntrada;
+    }
 
+    public boolean getOcupado(){
+        return ocupado;
+    }
+
+    public void setOcupado(boolean b){
+        ocupado = b;
+    }
+     public void librarEspacio(){
+        ocupado = false;
+        vei = null;
+     }
 }
