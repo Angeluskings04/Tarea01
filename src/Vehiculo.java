@@ -5,6 +5,10 @@ public class Vehiculo{
   public static enum Color{
     NEGRO, BLANCO, GRIS, ROJO, AZUL
   }
+  public static enum Tipo {
+    HIBRIDO, ELECTRICO, CLASICO;
+  }
+  Tipo tipo;
   Color color;
   String marca;
   String modelo;
@@ -17,12 +21,13 @@ public class Vehiculo{
 
   }
 
-  public Vehiculo(String marca, String modelo, int año, Color color, String placas){
+  public Vehiculo(String marca, String modelo, int año, Color color, String placas, Tipo tipo){
     this.marca = marca;
     this.modelo = modelo;
     this.placas = placas;
     this.año = año;
     this.color = color;
+    this.tipo = tipo;
     pension = false;
     vigencia = 0;
   }
@@ -40,6 +45,7 @@ public class Vehiculo{
       System.out.println(".-/c-.,:: ");
       System.out.println("(_)'==(_)");
     }
+    System.out.println();
 
   }
 
