@@ -19,8 +19,8 @@ public class Estacionamiento{
   //Metodo que nos dice y modifica los lugares disponibles que tiene el estacionamiento.
   public int parkingDisponibles(){
     int cont = 0;
-    for (Cajon i : parking) {
-      if (i == null) {
+    for (int i=0 ;i<parking.length;i++) {
+      if (parking[i]==null){
         cont++;
       }
     }
@@ -31,20 +31,23 @@ public class Estacionamiento{
   public int buscar(Vehiculo c){
     int i=0;
     for(i = 0;i<parking.length;i++){
-      if(parking[i].equals(c)){
+      Vehiculo aux = parking[i].getVehiculo();
+      if(aux.equals(c)){
         return i;
       }else{
         return i=-1;
       }
     }
+    return i;
   }
 
   //Metodo en el que el usuario puede pagar o adquirir una pension mensual.
   public int membresia(Vehiculo c){
     int precioAPagar = 750;
-    c.pension = true;
+    c.setPension(true);
     return precioAPagar;
   }
+
   //Metodo que hace las cuentas y regersa el precio a pagar.
   public int pago(Vehiculo c,int extras){
     int precioAPagar=10;
@@ -53,34 +56,48 @@ public class Estacionamiento{
     int posicionVehiculo = buscar(c);
     if(posicionVehiculo!=-1){
       if(parking[posicionVehiculo].getBoleto()!=false){
-        if(c.pension != true){
-          if(hora>=2&&(hora*60)/15>0){
-            precioAPagar+=((hora*60)/15)*15;
-            parking[posicionVehiculo].librarEspacio();
+        if(parking[posicionVehiculo].getVehiculo().getPension() != true){
+          if(hora>2){
+            precioAPagar+=(((hora-2)*60)/15)*15;
+            librarEspacio(posicionVehiculo);
+            System.out.println("Pagar: "+ precioAPagar);
             System.out.println("Gracias Por Su Preferencia!");
             System.out.println("Lugar Libre!");
+          }else{
+            librarEspacio(posicionVehiculo);
+            System.out.println("Pagar: "+ precioAPagar);
+            return precioAPagar;
           }
+        } else if(parking[posicionVehiculo].getVehiculo().getPension() == true) {
+          precioAPagar = 0;
+          librarEspacio(posicionVehiculo);
+          System.out.println("No pagas.");
         }
       }else{
+        precioAPagar = 350;
         System.out.println("Tendra que pagar $350 por perdida de boleto.");
       }
-    }else{
+    }else if(posicionVehiculo==-1){
       System.out.println("Su automovil no se encuentra en nuestro estacionamiento!");
     }
     return precioAPagar;
   }
 
+  public void librarEspacio(int posicion){
+    parking[posicion]=null;
+  }
   //Metodo que agregara un carro al arreglo (Parking).
-  public void guardarCarro(Vehiculo c){
+  public void guardarCarro(Vehiculo c,boolean b){
+    Vehiculo aux = c;
     if(lugaresDisponibles<0){
       System.out.println("Estacionamiento lleno!");
     }else{
-      for (Cajon i : parking) {
-        if (i == null) {
-          i.asignar(c);
-          i.setOcupado(true);
-          i.boletoAsignado();
-          i.registrarEntrada();
+      for (int i =0;i<parking.length;i++) {
+        if (parking[i] == null) {
+          int check = 0;
+          Cajon newAux = new Cajon(true,aux,check,b);
+          parking[i] = newAux;
+          System.out.println("Se ha guardado con exito!");
           break;
         }
       }
