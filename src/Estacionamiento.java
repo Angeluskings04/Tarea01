@@ -31,13 +31,12 @@ public class Estacionamiento{
   public int buscar(Vehiculo c){
     int i=0;
     for(i = 0;i<parking.length;i++){
-      Vehiculo aux = parking[i].getVehiculo();
-      if(aux.equals(c)){
+      String aux = parking[i].getVehiculo().getPlacas();
+      if(aux.equals(c.getPlacas())){
         return i;
-      }else{
-        return i=-1;
       }
     }
+    i=-1;
     return i;
   }
 
@@ -45,13 +44,14 @@ public class Estacionamiento{
   public int membresia(Vehiculo c){
     int precioAPagar = 750;
     c.setPension(true);
+    System.out.println("Pagar: $750");
+    System.out.println("Motivo: Adquisicion mensual.");
     return precioAPagar;
   }
 
   //Metodo que hace las cuentas y regersa el precio a pagar.
   public int pago(Vehiculo c,int extras){
     int precioAPagar=10;
-    int aux;
     int hora = extras;//Hora que se le agregaran en la simulacion.
     int posicionVehiculo = buscar(c);
     if(posicionVehiculo!=-1){
@@ -59,24 +59,25 @@ public class Estacionamiento{
         if(parking[posicionVehiculo].getVehiculo().getPension() != true){
           if(hora>2){
             precioAPagar+=(((hora-2)*60)/15)*15;
+            System.out.println("Pagar: $"+ precioAPagar);
+            System.out.println("Gracias Por Su Preferencia!");
+            parking[posicionVehiculo].registrarSalida(hora);
+            parking[posicionVehiculo].registrarSalidaMinuto();
+            int hS = parking[posicionVehiculo].getHoraSalida();
+            int mS = parking[posicionVehiculo].getMinutoSalida();
+            System.out.println("Hora de Salida:" + hS +":"+mS);
             librarEspacio(posicionVehiculo);
-            System.out.println("Pagar: "+ precioAPagar);
-            System.out.println("Gracias Por Su Preferencia!");
-            parking[posicionVehiculo].registrarSalida(hora);
-            parking[posicionVehiculo].registrarSalidaMinuto();
-            int hS = parking[posicionVehiculo].getHoraSalida();
-            int mS = parking[posicionVehiculo].getMinutoSalida();
-            System.out.println("Hora de Salida:" + hS +":"+mS);
-            System.out.println("Lugar Libre!");
+            System.out.println("Vuelve pronto!");
           }else{
-            System.out.println("Pagar: "+ precioAPagar);
+            System.out.println("Pagar: $"+ precioAPagar);
+            System.out.println("Motivo: Uso estacionamiento");
             System.out.println("Gracias Por Su Preferencia!");
             parking[posicionVehiculo].registrarSalida(hora);
             parking[posicionVehiculo].registrarSalidaMinuto();
             int hS = parking[posicionVehiculo].getHoraSalida();
             int mS = parking[posicionVehiculo].getMinutoSalida();
             System.out.println("Hora de Salida:" + hS +":"+mS);
-            System.out.println("Lugar Libre!");
+            System.out.println("Vuelva pronto!");
             return precioAPagar;
           }
         } else if(parking[posicionVehiculo].getVehiculo().getPension() == true) {
@@ -86,7 +87,14 @@ public class Estacionamiento{
         }
       }else{
         precioAPagar = 350;
-        System.out.println("Tendra que pagar $350 por perdida de boleto.");
+        System.out.println("Pagar: $350");
+        System.out.println("Motivo: Perdida de boleto");
+        parking[posicionVehiculo].registrarSalida(hora);
+        parking[posicionVehiculo].registrarSalidaMinuto();
+        int hS = parking[posicionVehiculo].getHoraSalida();
+        int mS = parking[posicionVehiculo].getMinutoSalida();
+        System.out.println("Hora de Salida:" + hS +":"+mS);
+        System.out.println("Recomendacion: !!!No perder de vista tu boleto!!!");
       }
     }else if(posicionVehiculo==-1){
       System.out.println("Su automovil no se encuentra en nuestro estacionamiento!");
@@ -99,7 +107,7 @@ public class Estacionamiento{
   }
 
   //Metodo que agregara un carro al arreglo (Parking).
-  public void guardarCarro(Vehiculo c,boolean b){
+  public void guardarCarro(Vehiculo c,boolean entrada){
     Vehiculo aux = c;
     if(lugaresDisponibles<0){
       System.out.println("Estacionamiento lleno!");
@@ -107,7 +115,7 @@ public class Estacionamiento{
       for (int i =0;i<parking.length;i++) {
         if (parking[i] == null) {
           int check = 0;
-          Cajon newAux = new Cajon(true,aux,check,b);
+          Cajon newAux = new Cajon(true,aux,check,entrada);
           parking[i] = newAux;
           parking[i].registrarEntrada();
           parking[i].registrarEntradaMinuto();

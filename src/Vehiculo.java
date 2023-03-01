@@ -39,6 +39,10 @@ public class Vehiculo{
     pension=p;
   }
 
+  public String getPlacas(){
+    return placas;
+  }
+
   public void ilustracion(){
     if(this instanceof Coche){
       System.out.println("El vehiculo es: Coche " );

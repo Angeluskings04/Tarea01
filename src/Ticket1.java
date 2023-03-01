@@ -28,14 +28,36 @@ public class Ticket1{
 
     Coche c1 = new Coche("Volkswagen","Golf", 2016,Vehiculo.Color.valueOf("NEGRO"),"AEF142",Vehiculo.Tipo.valueOf("HIBRIDO"));
     c1.impCoche();
-    l1.guardarCarro(c1,true);
+    l1.guardarCarro(c1,false);
+    System.out.println("Lugares en el estacionamiento: " +l1.parkingDisponibles());
+    timer();
+    System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+
+    Coche c2 = new Coche("GM","Chevrolet", 2019,Vehiculo.Color.valueOf("AZUL"),"GJI458",Vehiculo.Tipo.valueOf("CLASICO"));
+    c2.impCoche();
+    l1.guardarCarro(c2,false);
     System.out.println("Lugares en el estacionamiento: " +l1.parkingDisponibles());
     timer();
     System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
 
 
     System.out.println("Pagos de boletos" + "\n");
+    System.out.println("****** Ticket 1******");
     l1.pago(m3,2);
+
+    System.out.println();
+
+    System.out.println("****** Ticket 2******");
+    l1.pago(c1,4);
+
+    System.out.println();
+
+    System.out.println("****** Ticket 2******");
+    l1.membresia(c2);
+
+    System.out.println();
+
+    //l1.pago(c2,1);
 
 
 

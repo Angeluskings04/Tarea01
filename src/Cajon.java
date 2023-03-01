@@ -51,11 +51,13 @@ public class Cajon {
         minutoEntrada = ltim.getMinute();
     }
 
-    // Metodo que cambia el valor de horaSalida usando el metodo de
-    // java.time.LocalTime.
     public void registrarSalida(int horas) {
-
-        horaSalida = horaEntrada+horas;
+        int suma = horaEntrada+horas;
+        if(suma>24){
+            horaSalida = suma - 24;
+        }else{
+            horaSalida = horaEntrada+horas;
+        }
     }
 
     public void registrarSalidaMinuto(){
