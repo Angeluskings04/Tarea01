@@ -62,10 +62,21 @@ public class Estacionamiento{
             librarEspacio(posicionVehiculo);
             System.out.println("Pagar: "+ precioAPagar);
             System.out.println("Gracias Por Su Preferencia!");
+            parking[posicionVehiculo].registrarSalida(hora);
+            parking[posicionVehiculo].registrarSalidaMinuto();
+            int hS = parking[posicionVehiculo].getHoraSalida();
+            int mS = parking[posicionVehiculo].getMinutoSalida();
+            System.out.println("Hora de Salida:" + hS +":"+mS);
             System.out.println("Lugar Libre!");
           }else{
-            librarEspacio(posicionVehiculo);
             System.out.println("Pagar: "+ precioAPagar);
+            System.out.println("Gracias Por Su Preferencia!");
+            parking[posicionVehiculo].registrarSalida(hora);
+            parking[posicionVehiculo].registrarSalidaMinuto();
+            int hS = parking[posicionVehiculo].getHoraSalida();
+            int mS = parking[posicionVehiculo].getMinutoSalida();
+            System.out.println("Hora de Salida:" + hS +":"+mS);
+            System.out.println("Lugar Libre!");
             return precioAPagar;
           }
         } else if(parking[posicionVehiculo].getVehiculo().getPension() == true) {
@@ -86,6 +97,7 @@ public class Estacionamiento{
   public void librarEspacio(int posicion){
     parking[posicion]=null;
   }
+
   //Metodo que agregara un carro al arreglo (Parking).
   public void guardarCarro(Vehiculo c,boolean b){
     Vehiculo aux = c;
@@ -97,6 +109,11 @@ public class Estacionamiento{
           int check = 0;
           Cajon newAux = new Cajon(true,aux,check,b);
           parking[i] = newAux;
+          parking[i].registrarEntrada();
+          parking[i].registrarEntradaMinuto();
+          int hE = parking[i].getHoraEntrada();
+          int mE = parking[i].getMinutoEntrada();
+          System.out.println("Hora de entrada:" + hE +":"+mE);
           System.out.println("Se ha guardado con exito!");
           break;
         }

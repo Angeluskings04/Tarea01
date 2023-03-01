@@ -17,7 +17,7 @@ public class Cajon {
     private int horaEntrada; // Hora en la que entro.
     int minutoEntrada;
     int horaSalida; // Hora en la que se esta saliendo
-    LocalTime ltim;
+    int minutoSalida;
     int precio;
     private boolean boleto; // ATRIBUTO que dice si tiene el boleto o no.
     private Vehiculo auto;
@@ -35,21 +35,31 @@ public class Cajon {
       this.horaEntrada = entrada;
     }
 
+    public Vehiculo getVehiculo(){
+        return auto;
+      }
+
     // Metodo que cambia el valor de horaEntrada usando el metodo de
     // java.time.LocalTime.
     public void registrarEntrada() {
+        LocalTime ltim=LocalTime.now();
         horaEntrada = ltim.getHour();
-
     }
 
-    public Vehiculo getVehiculo(){
-      return auto;
+    public void registrarEntradaMinuto(){
+        LocalTime ltim=LocalTime.now();
+        minutoEntrada = ltim.getMinute();
     }
 
     // Metodo que cambia el valor de horaSalida usando el metodo de
     // java.time.LocalTime.
-    public void registrarSalida() {
-        horaSalida = ltim.getHour();
+    public void registrarSalida(int horas) {
+
+        horaSalida = horaEntrada+horas;
+    }
+
+    public void registrarSalidaMinuto(){
+        minutoSalida = minutoEntrada;
     }
 
     public void asignar(Vehiculo c){
@@ -66,6 +76,18 @@ public class Cajon {
 
     public int getHoraEntrada(){
         return horaEntrada;
+    }
+
+    public int getHoraSalida(){
+        return horaSalida;
+    }   
+    
+    public int getMinutoSalida(){
+        return minutoSalida;
+    }
+
+    public int getMinutoEntrada(){
+        return minutoEntrada;
     }
 
     public boolean getOcupado(){
